@@ -1,0 +1,42 @@
+# Software contributed by hub members, shown on the Software page in the
+# order listed here.
+#
+# Required: name, summary
+#   summary   one sentence
+# Recommended:
+#   kind      one of: web_app, local_app, repository
+#             (badge text is set under software_page.kinds in site.yml and
+#             card colour under palette: kind-<name>)
+# Optional:
+#   description    longer text, supports markdown (Software page only)
+#   authors        a list of names; to link a name to a profile page, write
+#                  it as `- name: "…"` with `url: "…"` on the next line
+#   tags           a list of short labels, e.g. language or topic
+#   app_url        link to a web app          -> "Open app"
+#   download_url   link to a download         -> "Download"
+#   repo_url       link to the code           -> "Code"
+#   docs_url       link to documentation      -> "Documentation"
+#   paper_url      link to a related paper    -> "Paper"
+#   featured       true to also show it on the overview page
+#
+
+- name: "Product-Mix Auction"
+  kind: repository
+  summary: "Python implementation of the Product-Mix Auction that computes competitive (Walrasian) equilibrium prices and allocations."
+  authors:
+    - name: "Edwin Lock"
+      url: "https://www.kcl.ac.uk/people/edwin-lock"
+  tags: ["Python", "auctions", "market design"]
+  repo_url: "https://github.com/edwinlock/product-mix"
+  paper_url: "https://doi.org/10.1287/moor.2019.0248"
+  featured: true
+
+- name: "Arrears Product-Mix Auction"
+  kind: web_app
+  summary: "Interactive web app showing how a Product-Mix Auction can efficiently clear a country's payment arrears."
+  authors:
+    - name: "Edwin Lock"
+      url: "https://www.kcl.ac.uk/people/edwin-lock"
+  tags: ["Python", "auctions", "public finance"]
+  app_url: "https://arrears-pma.edwinlock.com"
+  featured: true

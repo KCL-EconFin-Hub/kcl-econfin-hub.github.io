@@ -1,0 +1,197 @@
+# ---------------------------------------------------------------------------
+# All text that appears on the site is configured here, plus the colours.
+#
+#   _data/site.yml       <- this file: palette, headings, paragraphs, labels
+#   _data/people.yml     <- the hub co-champions (shown in the sidebar)
+#   _data/events.yml     <- seminars, workshops and other events
+#   _data/software.yml   <- software contributed by hub members
+#
+# Paragraph fields (description, intro, etc.) support markdown: links,
+# **bold**, *italic*, lists, and blank-line-separated paragraphs.
+# ---------------------------------------------------------------------------
+
+# ------------------------------ Colour palette -----------------------------
+# Every colour on the site comes from this list. Each entry becomes a CSS
+# variable (accent -> var(--accent)) used throughout assets/css/style.css.
+palette:
+  accent: "#C8102E"        # KCL red: rules, banner dots, badges, icons, focus
+  accent-tint: "#FBEFF1"   # pale wash behind event badges
+  link: "#1D3461"          # navy: links, names, buttons
+  ink: "#353E4A"           # slate: top bar, banner and footer
+  on-ink: "#FFFFFF"        # text on ink, accent, link and kind colours
+  text: "#2A2E33"          # body text and headings
+  muted: "#5C6470"         # secondary text: dates, job titles
+  line: "#DADDE2"          # borders, dividers, list bullets
+  panel: "#EEF0F2"         # grey sidebar boxes and event date blocks
+  background: "#FFFFFF"    # page, cards, title box
+  # Software cards: one colour per `kind` in _data/software.yml, used for the
+  # card's top edge, badge and links (white text sits on it, so keep it dark).
+  kind-web_app: "#C8102E"
+  kind-local_app: "#0F6466"
+  kind-repository: "#4B3F72"
+
+# --------------------------------- Global ----------------------------------
+# title       -> the hub's name: main heading on the overview, and footer
+# short_title -> the name in the top bar, beside the mark
+# affiliation -> small line above the heading on the overview, and in the footer
+# description -> summary used by search engines
+title: "Economics and Finance Hub"
+short_title: "Economics & Finance Hub"
+mark: "EF"   # the initials in the small square logo in the top bar
+affiliation: "Department of Informatics · King's College London"
+description: "The Economics and Finance Hub brings together researchers in the Department of Informatics, King's College London, working at the intersection of computation, economics and finance."
+
+# Small print at the bottom of every page.
+footer_note: "This site is maintained by the hub co-champions and is not part of King's College London's official website."
+
+# Privacy-friendly visitor statistics with Umami (https://umami.is): no
+# cookies and no personal data. Paste the website ID from Umami (the website's
+# Edit page, under "Tracking code"); leave it empty to turn analytics off.
+# Only the live site built by GitHub Pages is tracked, never local or test
+# builds.
+analytics:
+  umami_website_id: ""
+  umami_script: "https://cloud.umami.is/script.js"   # change if you self-host Umami
+
+# Links in the top bar, in order.
+nav:
+  - title: "Overview"
+    url: "/"
+  - title: "Events"
+    url: "/events/"
+  - title: "Software"
+    url: "/software/"
+
+# ------------------------------ Overview page ------------------------------
+home:
+  # Browser tab title.
+  page_title: "Economics and Finance Hub — Department of Informatics, King's College London"
+  tagline: "Where computation meets economics and finance"
+  # Show the affiliation above the heading on this page.
+  show_affiliation: true
+
+  about:
+    description: |
+      Computing and automation play an increasingly important role in
+      economics and finance, from trading and portfolio construction to the
+      design of markets and the platforms on which economic activity takes
+      place. At the same time, economic and financial incentives matter in
+      conventional distributed systems, such as internet protocols and
+      blockchains.
+
+      The Economics and Finance Hub brings together researchers in the
+      Department of Informatics who work at the intersection of computation,
+      economics and finance, studying the role each plays in the other. We
+      draw on algorithm design, game theory, mechanism design, network
+      analysis, machine learning, time-series analysis and agent-based
+      modelling to tackle problems such as market design and microstructure,
+      risk management, portfolio construction and the design of
+      crypto-economic systems.
+
+      The hub collaborates with the Department of Mathematics and King's
+      Business School, and with external partners including the Financial
+      Conduct Authority.
+
+  themes:
+    heading: "Research questions"
+    intro: |
+      The hub carries out fundamental and applied research in computational
+      economics and finance. Our current key research directions are:
+    # One entry per research question. Markdown is allowed.
+    items:
+      - "Solving economic and financial problems with machine learning and AI techniques"
+      - "Incentives and mechanism design in markets, including auctions and matching"
+      - "Algorithms and complexity of markets and economic equilibria"
+      - "Blockchain and decentralised finance"
+      - "Detecting systemic risk and clearing of financial networks"
+
+  events:
+    heading: "Upcoming events"
+    intro: ""
+    # Show at most this many upcoming events here.
+    limit: 3
+    # Shown when no upcoming events are listed in _data/events.yml.
+    none: "No events scheduled at the moment. Check back soon!"
+    link_text: "All events, upcoming and past"
+
+  # Software marked `featured: true` in _data/software.yml. The section is
+  # hidden when nothing is featured.
+  software:
+    heading: "Featured software"
+    intro: ""
+    link_text: "All software"
+
+
+# ------------------------------- Events page -------------------------------
+events_page:
+  page_title: "Events — Economics and Finance Hub"
+  heading: "Events"
+  tagline: "Seminars, workshops and other events"
+  intro: |
+    Talks, workshops and other events organised by the hub. Get in touch with
+    the [hub contacts](#contact) if you would like to give a talk.
+  upcoming_heading: "Upcoming"
+  past_heading: "Past"
+  no_upcoming: "No upcoming events scheduled at the moment. Check back soon!"
+  no_past: "No past events to show yet."
+
+# ------------------------------ Software page ------------------------------
+software_page:
+  page_title: "Software — Economics and Finance Hub"
+  heading: "Software"
+  tagline: "Tools, apps and code from hub members"
+  intro: |
+    Our members build software that turns research on markets, auctions and
+    finance into practical tools. Some run straight in your browser; for
+    others, the code is openly available on GitHub.
+
+    Whether you'd like to try one out, adapt it for your organisation or
+    explore a new idea with us, we'd be glad to hear from you. Just get in
+    touch with the project's author or the hub co-champions.
+  none: "No software listed yet. Check back soon!"
+  # Badge text for each `kind` in _data/software.yml. To add a kind, add it
+  # here and give it a `kind-<name>` colour in the palette above.
+  kinds:
+    web_app: "Web app"
+    local_app: "Local app"
+    repository: "Code repository"
+
+# ------------------------------ Shared labels ------------------------------
+labels:
+  # Event links and buttons
+  date_tba: "Date TBA"
+  url: "Event page"
+  registration_url: "Register"
+  video_link: "Join online"
+  speaker_url: "Speaker page"
+  paper_url: "Paper"
+  add_to_calendar: "Add to calendar"
+  # Software links
+  app_url: "Open app"
+  download_url: "Download"
+  repo_url: "Code"
+  docs_url: "Documentation"
+  # Author line on software cards: "By A, B and C".
+  by: "By"
+  and: "and"
+  # Hidden link for keyboard users, shown on Tab.
+  skip_link: "Skip to content"
+
+# -------------------------------- Sidebar ----------------------------------
+# Shown beside the content on every page (below it on narrow screens). A box
+# with no entries is hidden. The co-champions come from _data/people.yml.
+sidebar:
+  people_heading: "Hub co-champions"
+
+  # The contact box has id="contact", so "[text](#contact)" links point here.
+  contact_heading: "Contact us"
+  contacts:
+    - "bart.de_keijzer@kcl.ac.uk"
+    - "edwin.lock@kcl.ac.uk"
+
+  links_heading: "Related"
+  links:
+    - title: "Department of Informatics"
+      url: "https://www.kcl.ac.uk/informatics"
+    - title: "Faculty of Natural, Mathematical & Engineering Sciences"
+      url: "https://www.kcl.ac.uk/nmes"

@@ -1,0 +1,25 @@
+---
+layout: default
+permalink: /software/
+section: software_page
+---
+
+{%- assign sp = site.data.site.software_page -%}
+{%- assign empty_list = '' | split: ',' -%}
+{%- assign all_software = site.data.software | default: empty_list -%}
+
+<section class="section">
+    <div class="prose">{{ sp.intro | markdownify }}</div>
+</section>
+
+<section id="software" class="section">
+    {% if all_software.size > 0 %}
+    <div class="cards">
+        {% for item in all_software %}
+            {% include software_item.html item=item %}
+        {% endfor %}
+    </div>
+    {% else %}
+        <p class="empty">{{ sp.none }}</p>
+    {% endif %}
+</section>

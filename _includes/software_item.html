@@ -1,0 +1,43 @@
+{%- comment -%}
+Renders one software entry as a card. Expects: include.item
+Pass compact=true to leave out the description (used on the overview).
+
+Plain-text fields are escaped, so a name like "x<y" shows as written.
+{%- endcomment -%}
+{%- assign item = include.item -%}
+{%- assign labels = site.data.site.labels -%}
+{%- assign kinds = site.data.site.software_page.kinds -%}
+<article class="card" style="--kind: var(--kind-{{ item.kind }}, var(--accent))">
+    {% if item.kind %}<span class="badge">{{ kinds[item.kind] | default: item.kind | escape }}</span>{% endif %}
+    <h3 class="software-name">{{ item.name | escape }}</h3>
+    <p>{{ item.summary | escape }}</p>
+    {% unless include.compact %}{% if item.description %}
+    <div class="prose software-description">{{ item.description | markdownify }}</div>
+    {% endif %}{% endunless %}
+    {%- comment -%}
+    Each author is a plain name or a {name, url} pair; names with a url link
+    to that profile.
+    {%- endcomment -%}
+    {% if item.authors %}
+    <p class="meta">
+        {{- labels.by }} {% for author in item.authors -%}
+        {%- assign name = author.name | default: author -%}
+        {%- if author.url %}<a href="{{ author.url }}">{{ name | escape }}</a>{% else %}{{ name | escape }}{% endif -%}
+        {%- if forloop.rindex == 2 %} {{ labels.and }} {% elsif forloop.last == false %}, {% endif -%}
+        {%- endfor -%}
+    </p>
+    {% endif %}
+    <div class="card-footer">
+        {% if item.tags %}
+        <ul class="tags">
+            {%- for tag in item.tags %}<li>{{ tag | escape }}</li>{% endfor -%}
+        </ul>
+        {% endif %}
+        {%- assign link_keys = 'app_url,download_url,repo_url,docs_url,paper_url' | split: ',' -%}
+        <div class="links">
+            {%- for key in link_keys %}{% if item[key] %}
+            <a href="{{ item[key] }}" class="link" target="_blank" rel="noopener">{{ labels[key] }}</a>
+            {%- endif %}{% endfor %}
+        </div>
+    </div>
+</article>

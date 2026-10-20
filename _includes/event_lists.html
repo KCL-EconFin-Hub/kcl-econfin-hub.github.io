@@ -1,0 +1,43 @@
+{%- comment -%}
+Splits _data/events.yml into two lists for the including page:
+
+  upcoming  events not yet finished (date or end_date today or later),
+            soonest first; undated events last
+  past      finished events, most recent first
+
+Each event gets a text key "YYYY-MM-DD|position", and the keys are sorted as
+text. The date filter normalises every date first, so an unquoted date in the
+YAML (read as a Date rather than text) cannot break the comparison or the sort.
+{%- endcomment -%}
+{%- assign today = 'now' | date: '%Y-%m-%d' -%}
+{%- assign empty_list = '' | split: ',' -%}
+{%- comment -%}site.data.events is false when the file is empty.{%- endcomment -%}
+{%- assign all_events = site.data.events | default: empty_list -%}
+
+{%- assign upcoming_keys = empty_list -%}
+{%- assign past_keys = empty_list -%}
+{%- for event in all_events -%}
+    {%- comment -%}"undated" sorts after any date, so undated events come last.{%- endcomment -%}
+    {%- assign start = event.date | date: '%Y-%m-%d' | default: 'undated' -%}
+    {%- assign last_day = event.end_date | default: event.date | date: '%Y-%m-%d' | default: 'undated' -%}
+    {%- assign key = start | append: '|' | append: forloop.index0 -%}
+    {%- if last_day >= today -%}
+        {%- assign upcoming_keys = upcoming_keys | push: key -%}
+    {%- else -%}
+        {%- assign past_keys = past_keys | push: key -%}
+    {%- endif -%}
+{%- endfor -%}
+
+{%- assign upcoming = empty_list -%}
+{%- assign keys = upcoming_keys | sort -%}
+{%- for key in keys -%}
+    {%- assign i = key | split: '|' | last | plus: 0 -%}
+    {%- assign upcoming = upcoming | push: all_events[i] -%}
+{%- endfor -%}
+
+{%- assign past = empty_list -%}
+{%- assign keys = past_keys | sort | reverse -%}
+{%- for key in keys -%}
+    {%- assign i = key | split: '|' | last | plus: 0 -%}
+    {%- assign past = past | push: all_events[i] -%}
+{%- endfor -%}

@@ -1,0 +1,67 @@
+{%- comment -%}
+The sidebar shown on every page: co-champions (from _data/people.yml),
+contact addresses and related links (from `sidebar` in _data/site.yml).
+A box with nothing to show is left out.
+{%- endcomment -%}
+{%- assign sb = site.data.site.sidebar -%}
+{%- assign empty_list = '' | split: ',' -%}
+{%- assign people = site.data.people.leads | default: empty_list -%}
+<aside class="sidebar">
+    {% if people.size > 0 %}
+    <section class="panel">
+        <h2>{{ sb.people_heading }}</h2>
+        <ul>
+            {%- for person in people %}
+            <li class="person">
+                {%- if person.photo %}
+                <img class="person-photo" src="{{ '/assets/img/people/' | append: person.photo | relative_url }}"
+                     alt="" width="72" height="72" loading="lazy">
+                {%- endif %}
+                <div>
+                    {%- if person.website %}
+                    <a class="person-name" href="{{ person.website }}">{{ person.name | escape }}</a>
+                    {%- else %}
+                    <span class="person-name">{{ person.name | escape }}</span>
+                    {%- endif %}
+                    {% if person.job_title %}<span class="person-title">{{ person.job_title | escape }}</span>{% endif %}
+                </div>
+            </li>
+            {%- endfor %}
+        </ul>
+    </section>
+    {% endif %}
+
+    {% if sb.contacts.size > 0 %}
+    <section class="panel" id="contact">
+        <h2>{{ sb.contact_heading }}</h2>
+        <ul class="contacts">
+            {%- for email in sb.contacts %}
+            <li>
+                <a href="mailto:{{ email }}">
+                    <span class="contact-icon" aria-hidden="true">
+                        {%- comment -%}Feather "mail"{%- endcomment -%}
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </span>
+                    {{ email }}
+                </a>
+            </li>
+            {%- endfor %}
+        </ul>
+    </section>
+    {% endif %}
+
+    {% if sb.links.size > 0 %}
+    <section class="panel">
+        <h2>{{ sb.links_heading }}</h2>
+        <ul class="related">
+            {%- for link in sb.links %}
+            <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>
+            {%- endfor %}
+        </ul>
+    </section>
+    {% endif %}
+</aside>

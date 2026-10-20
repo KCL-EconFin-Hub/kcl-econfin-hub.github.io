@@ -1,0 +1,45 @@
+# Hub events. Order here does not matter — events are sorted by date.
+#
+# Required: title
+# Optional:
+#   type              e.g. "Seminar", "Workshop", "Reading group" (shown as a badge)
+#   speaker           shown in bold
+#   date              "YYYY-MM-DD", in quotes
+#   end_date          "YYYY-MM-DD", for events spanning several days
+#   time              "HH:MM-HH:MM" (or just "HH:MM" for a one-hour slot)
+#   location
+#   description       supports markdown
+#   url               event page
+#   registration_url
+#   video_link        Teams/Zoom link
+#   speaker_url
+#   paper_url
+#
+# Events that have not finished yet (date or end_date today or later) appear
+# under "Upcoming", soonest first; the rest under "Past", most recent first.
+# An event with no date counts as upcoming and is listed last.
+#
+# The [] below is an empty list and keeps the file valid while there are no
+# events. Delete it when you add the first real entry.
+
+[]
+
+# EXAMPLES
+# - title: "Strategic Behaviour in Decentralised Exchanges"
+#   type: "Seminar"
+#   speaker: "Dr Jane Doe (University of Somewhere)"
+#   date: "2026-11-12"
+#   time: "14:00-15:00"
+#   location: "Bush House (N) 6.01"
+#   description: "We study how liquidity providers respond to ..."
+#   speaker_url: "https://example.com/~jdoe"
+#   paper_url: "https://arxiv.org/abs/example"
+#
+# - title: "Workshop on Computation and Markets"
+#   type: "Workshop"
+#   date: "2027-03-18"
+#   end_date: "2027-03-19"
+#   location: "Strand Campus"
+#   description: "Two days of talks on ..."
+#   url: "https://example.com/workshop"
+#   registration_url: "https://example.com/register"

@@ -1,0 +1,25 @@
+# Jekyll configuration for the Economics and Finance Hub site.
+# All visible text lives in _data/site.yml, not here.
+title: Economics and Finance Hub
+
+# Where the site is served from. For an organisation/user site
+# (https://NAME.github.io/) leave `baseurl` empty. For a project site
+# (https://NAME.github.io/REPO/) set `baseurl: "/REPO"`, or CSS, JavaScript and
+# internal links will 404.
+url: "https://kcl-finance-hub.github.io"
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+theme: null
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - DEVELOP.md
+  - TEST.md
+  - vendor/
+  - .sass-cache/
+  - .jekyll-cache/

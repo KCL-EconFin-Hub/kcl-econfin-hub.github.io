@@ -1,0 +1,87 @@
+{%- comment -%}
+The page shell shared by every page: top bar, banner with the page title,
+the page content beside the sidebar, and the footer.
+
+Page text comes from _data/site.yml; a page selects its block with
+`section: events_page` (etc.) in its front matter, and the default is the
+overview block `home`.
+{%- endcomment -%}
+{%- assign s = site.data.site -%}
+{%- assign section = page.section | default: 'home' -%}
+{%- assign p = s[section] -%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ p.page_title }}</title>
+    <meta name="description" content="{{ s.description | escape }}">
+    <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="16x16 32x32 48x48">
+    <link rel="apple-touch-icon" href="{{ '/apple-touch-icon.png' | relative_url }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&display=swap" rel="stylesheet">
+    {%- comment -%}The palette in _data/site.yml becomes CSS variables here.{%- endcomment %}
+    <style>
+        :root {
+            {%- for colour in s.palette %}
+            --{{ colour[0] }}: {{ colour[1] }};
+            {%- endfor %}
+        }
+    </style>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <script src="{{ '/assets/js/calendar.js' | relative_url }}" defer></script>
+    {%- comment -%}
+    Umami analytics, only in the GitHub Pages build (jekyll.environment is
+    "production" there and "development" locally). data-domains also stops a
+    fork published elsewhere from reporting into the hub's statistics.
+    {%- endcomment -%}
+    {%- assign umami_id = s.analytics.umami_website_id | default: "" -%}
+    {%- if jekyll.environment == "production" and umami_id != "" %}
+    <script defer src="{{ s.analytics.umami_script }}" data-website-id="{{ umami_id }}"
+            data-domains="{{ site.url | remove: 'https://' | remove: 'http://' }}" data-do-not-track="true"></script>
+    {%- endif %}
+</head>
+<body>
+    <a class="skip-link" href="#main">{{ s.labels.skip_link }}</a>
+
+    <header class="topbar">
+        <div class="wrap">
+            <a class="wordmark" href="{{ '/' | relative_url }}">
+                <span class="mark" aria-hidden="true">{{ s.mark }}</span>
+                <span>{{ s.short_title }}</span>
+            </a>
+            <nav class="nav" aria-label="Main">
+                {%- for item in s.nav %}
+                <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.title }}</a>
+                {%- endfor %}
+            </nav>
+        </div>
+    </header>
+
+    <div class="banner">
+        <div class="wrap">
+            <div class="title-box">
+                {% if p.show_affiliation %}<p class="eyebrow">{{ s.affiliation }}</p>{% endif %}
+                <h1>{{ p.heading | default: s.title }}</h1>
+                {% if p.tagline and p.tagline != "" %}<p class="tagline">{{ p.tagline }}</p>{% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="wrap page">
+        <main id="main">
+            {{ content }}
+        </main>
+        {% include sidebar.html %}
+    </div>
+
+    <footer class="footer">
+        <div class="wrap">
+            <p class="footer-name">{{ s.title }}</p>
+            <p>{{ s.affiliation }}</p>
+            {% if s.footer_note %}<p class="footer-note">{{ s.footer_note }}</p>{% endif %}
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{%- comment -%}
+Renders a single event. Expects: include.event
+Pass compact=true to leave out the description (used on the overview).
+
+Plain-text fields are escaped, so a title like "P<NP" shows as written.
+{%- endcomment -%}
+{%- assign event = include.event -%}
+{%- assign labels = site.data.site.labels -%}
+{%- assign start = event.date | date: '%Y-%m-%d' -%}
+{%- assign end = event.end_date | date: '%Y-%m-%d' -%}
+{%- comment -%}
+YAML reads an unquoted `time: 14:00` as the number 840 (minutes, in base 60).
+Turn such a number back into "14:00"; any other time is shown as written.
+{%- endcomment -%}
+{%- assign time = event.time | append: '' -%}
+{%- assign time_as_number = event.time | plus: 0 | append: '' -%}
+{%- if time != '' and time == time_as_number -%}
+    {%- assign hours = event.time | divided_by: 60 | floor -%}
+    {%- assign minutes = event.time | modulo: 60 | floor | prepend: '0' | slice: -2, 2 -%}
+    {%- assign time = hours | append: ':' | append: minutes -%}
+{%- endif -%}
+<article class="event">
+    <div class="event-date" aria-hidden="true">
+        {%- if event.date %}
+        <span class="event-day">{{ event.date | date: "%-d" }}</span>
+        <span class="event-month">{{ event.date | date: "%b %Y" }}</span>
+        {%- else %}
+        <span class="event-month">{{ labels.date_tba }}</span>
+        {%- endif %}
+    </div>
+    <div class="event-body">
+        {% if event.type %}<span class="badge">{{ event.type | escape }}</span>{% endif %}
+        <h3 class="event-title">{{ event.title | escape }}</h3>
+        <p class="meta">
+            {%- if event.speaker %}<span class="speaker">{{ event.speaker | escape }}</span>{% endif -%}
+            {%- if event.date -%}
+            <span>{{ event.date | date: "%-d %B %Y" }}{% if event.end_date and end != start %} – {{ event.end_date | date: "%-d %B %Y" }}{% endif %}</span>
+            {%- endif -%}
+            {%- if time != '' %}<span>{{ time | escape }}</span>{% endif -%}
+            {%- if event.location %}<span>{{ event.location | escape }}</span>{% endif -%}
+        </p>
+        {% unless include.compact %}{% if event.description %}
+        <div class="prose event-description">{{ event.description | markdownify }}</div>
+        {% endif %}{% endunless %}
+        {%- assign link_keys = 'url,registration_url,video_link,speaker_url,paper_url' | split: ',' -%}
+        <div class="links">
+            {%- for key in link_keys %}{% if event[key] %}
+            <a href="{{ event[key] }}" class="link" target="_blank" rel="noopener">{{ labels[key] }}</a>
+            {%- endif %}{% endfor %}
+            {%- comment -%}
+            The details travel in data- attributes rather than as JavaScript
+            string arguments, so apostrophes and line breaks cannot break the click.
+            {%- endcomment -%}
+            {%- if event.date %}
+            <button class="btn-calendar" type="button" onclick="downloadCalendar(this.dataset)"
+                    data-title="{{ event.title | escape }}"
+                    data-speaker="{{ event.speaker | escape }}"
+                    data-date="{{ start }}"
+                    data-end-date="{{ end }}"
+                    data-time="{{ time | escape }}"
+                    data-location="{{ event.location | escape }}"
+                    data-description="{{ event.description | strip_html | escape }}">
+                {{ labels.add_to_calendar }}
+            </button>
+            {%- endif %}
+        </div>
+    </div>
+</article>

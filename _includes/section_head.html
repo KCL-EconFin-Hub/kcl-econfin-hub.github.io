@@ -1,0 +1,8 @@
+{%- comment -%}
+Section heading plus optional intro paragraph.
+Expects: include.config, a block from _data/site.yml with `heading` and `intro`.
+{%- endcomment -%}
+<h2>{{ include.config.heading }}</h2>
+{% if include.config.intro and include.config.intro != "" %}
+<div class="section-intro">{{ include.config.intro | markdownify }}</div>
+{% endif %}

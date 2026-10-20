@@ -1,0 +1,76 @@
+# Jekyll build output and caches
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler: local gem installs and settings. Gemfile.lock is ignored because
+# GitHub Pages resolves gem versions itself; drop that line to pin versions.
+vendor/
+.bundle/
+Gemfile.lock
+
+# Node, if tooling is ever used locally (e.g. npx html-validate)
+node_modules/
+
+# LLM / AI assistant files and folders
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+.claude.json
+.mcp.json
+AGENTS.md
+AGENT.md
+GEMINI.md
+.gemini/
+.codex/
+.cursor/
+.cursorrules
+.cursorignore
+.aider*
+.github/copilot-instructions.md
+.github/instructions/
+.github/prompts/
+.codeium/
+.continue/
+.windsurf/
+.windsurfrules
+.clinerules
+.cline/
+.roo/
+.roomodes
+.kiro/
+.junie/
+.amazonq/
+.augment/
+.opencode/
+.goose/
+.specstory/
+llm-scratch/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Editors
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Environment and secrets
+.env
+.env.*
+!.env.example

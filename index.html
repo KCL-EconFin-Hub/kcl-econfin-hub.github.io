@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+{%- assign home = site.data.site.home -%}
+{%- assign empty_list = '' | split: ',' -%}
+
+<section id="about" class="section">
+    <div class="prose">{{ home.about.description | markdownify }}</div>
+</section>
+
+<section id="themes" class="section">
+    {% include section_head.html config=home.themes %}
+    <ul class="themes">
+        {%- for item in home.themes.items %}
+        <li>{{ item | markdownify | remove: '<p>' | remove: '</p>' | strip }}</li>
+        {%- endfor %}
+    </ul>
+</section>
+
+<section id="events" class="section">
+    {% include section_head.html config=home.events %}
+    {% include event_lists.html %}
+    {% assign next_events = upcoming | slice: 0, home.events.limit %}
+    {% if next_events.size > 0 %}
+        {% for event in next_events %}
+            {% include event.html event=event compact=true %}
+        {% endfor %}
+    {% else %}
+        <p class="empty">{{ home.events.none }}</p>
+    {% endif %}
+    <p class="section-link"><a href="{{ '/events/' | relative_url }}" class="btn">{{ home.events.link_text }}</a></p>
+</section>
+
+{% assign all_software = site.data.software | default: empty_list %}
+{% assign featured = all_software | where: 'featured', true %}
+{% if featured.size > 0 %}
+<section id="software" class="section">
+    {% include section_head.html config=home.software %}
+    <div class="cards">
+        {% for item in featured %}
+            {% include software_item.html item=item compact=true %}
+        {% endfor %}
+    </div>
+    <p class="section-link"><a href="{{ '/software/' | relative_url }}" class="btn">{{ home.software.link_text }}</a></p>
+</section>
+{% endif %}
+

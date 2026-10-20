@@ -1,0 +1,22 @@
+# ---------------------------------------------------------------------------
+# The hub's co-champions, shown in the sidebar of every page in the order
+# listed. The box's heading is `sidebar.people_heading` in _data/site.yml.
+#
+# Fields:
+#   name        required
+#   photo       optional; a square image in assets/img/people/ (shown as a
+#               circle; 320x320 pixels is plenty)
+#   job_title   optional
+#   website     optional; the name links here (e.g. a KCL profile page)
+# ---------------------------------------------------------------------------
+
+leads:
+  - name: "Dr Bart de Keijzer"
+    photo: "bart-de-keijzer.jpg"
+    job_title: "Senior Lecturer in Computer Science"
+    website: "https://www.kcl.ac.uk/people/bart-de-keijzer"
+
+  - name: "Dr Edwin Lock"
+    photo: "edwin-lock.jpg"
+    job_title: "Lecturer in Computer Science Education"
+    website: "https://www.kcl.ac.uk/people/edwin-lock"

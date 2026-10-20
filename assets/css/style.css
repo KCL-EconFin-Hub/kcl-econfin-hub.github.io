@@ -1,0 +1,612 @@
+/* ---------------------------------------------------------------------------
+   Economics and Finance Hub
+
+   The design is a small set of tokens (below) applied everywhere; see
+   DEVELOP.md → "Design system". Colours are not defined here: each palette
+   entry in _data/site.yml becomes a CSS variable (accent → var(--accent)).
+   --------------------------------------------------------------------------- */
+
+:root {
+    /* Fluid type scale: 16px base, ratio 1.2 on a 360px screen, growing
+       smoothly to 18px, ratio 1.25 on a 1240px screen. */
+    --step--1: clamp(0.8333rem, 0.8061rem + 0.1212vi, 0.9rem);
+    --step-0: clamp(1rem, 0.9489rem + 0.2273vi, 1.125rem);
+    --step-1: clamp(1.2rem, 1.116rem + 0.375vi, 1.406rem);
+    --step-2: clamp(1.44rem, 1.31rem + 0.5778vi, 1.758rem);
+    --step-3: clamp(1.728rem, 1.536rem + 0.8532vi, 2.197rem);
+    --step-4: clamp(2.074rem, 1.798rem + 1.224vi, 2.747rem);
+    --step-5: clamp(2.488rem, 2.102rem + 1.718vi, 3.433rem);
+
+    /* Fluid space scale, multiples of the base size. */
+    --space-3xs: clamp(0.25rem, 0.2372rem + 0.05682vi, 0.2812rem);
+    --space-2xs: clamp(0.5rem, 0.4744rem + 0.1136vi, 0.5625rem);
+    --space-xs: clamp(0.75rem, 0.7116rem + 0.1705vi, 0.8438rem);
+    --space-s: clamp(1rem, 0.9489rem + 0.2273vi, 1.125rem);
+    --space-m: clamp(1.5rem, 1.423rem + 0.3409vi, 1.688rem);
+    --space-l: clamp(2rem, 1.898rem + 0.4545vi, 2.25rem);
+    --space-xl: clamp(3rem, 2.847rem + 0.6818vi, 3.375rem);
+    --space-2xl: clamp(4rem, 3.795rem + 0.9091vi, 4.5rem);
+    --gutter: clamp(1rem, 0.5909rem + 1.818vi, 2rem);
+
+    /* Archivo in two cuts: condensed bold for headings, near-normal width
+       regular for text. */
+    --font: 'Archivo', 'Arial Narrow', Arial, sans-serif;
+    --heading-stretch: 80%;
+    --text-stretch: 95%;
+
+    --page-width: 75rem;
+    --rule: 4px;           /* the red accent rule */
+}
+
+/* --------------------------------- Base ---------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font);
+    font-stretch: var(--text-stretch);
+    font-size: var(--step-0);
+    line-height: 1.6;
+    /* Break long URLs and names rather than let them widen the page. */
+    overflow-wrap: anywhere;
+    color: var(--text);
+    background-color: var(--background);
+    /* Keep the footer at the bottom of short pages. */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3 {
+    font-stretch: var(--heading-stretch);
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+a {
+    color: var(--link);
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* Centred column shared by the top bar, banner, page and footer. */
+.wrap {
+    max-inline-size: var(--page-width);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+}
+
+.skip-link {
+    position: absolute;
+    top: -10rem;
+    left: var(--space-s);
+    padding: var(--space-2xs) var(--space-s);
+    background-color: var(--background);
+    font-weight: 700;
+}
+
+.skip-link:focus {
+    top: var(--space-2xs);
+}
+
+/* ------------------------------- Top bar --------------------------------- */
+.topbar {
+    background-color: var(--ink);
+    color: var(--on-ink);
+}
+
+.topbar .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: var(--space-l);
+}
+
+.wordmark {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    padding-block: var(--space-xs);
+    color: var(--on-ink);
+    text-decoration: none;
+    font-stretch: var(--heading-stretch);
+    font-weight: 700;
+    font-size: var(--step-1);
+}
+
+.wordmark:hover {
+    color: var(--on-ink);
+}
+
+.mark {
+    display: grid;
+    place-items: center;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    background-color: var(--accent);
+    font-size: var(--step-0);
+}
+
+/* Links line up with the page edge whether the nav sits beside the wordmark
+   or wraps below it. */
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    margin-inline: calc(-1 * var(--space-xs));
+}
+
+.nav a {
+    display: flex;
+    align-items: center;
+    min-block-size: 3rem;
+    padding-inline: var(--space-xs);
+    color: var(--on-ink);
+    text-decoration: none;
+    font-weight: 700;
+    border-bottom: var(--rule) solid transparent;
+}
+
+.nav a:hover,
+.nav a[aria-current="page"] {
+    border-bottom-color: var(--accent);
+}
+
+/* -------------------------------- Banner --------------------------------- */
+/* A dot-matrix pattern on ink, fading in from the left, with the page title
+   in a white box. */
+.banner {
+    position: relative;
+    background-color: var(--ink);
+    border-top: 1px solid var(--muted);
+}
+
+.banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, var(--accent) 0.17rem, transparent 0.2rem);
+    background-size: 0.9rem 0.9rem;
+    /* Only the mask's alpha matters, so the colour here is not a palette one. */
+    mask-image: linear-gradient(to right, transparent 15%, black 90%);
+}
+
+.banner .wrap {
+    position: relative;
+    padding-block: var(--space-2xl) var(--space-l);
+}
+
+.title-box {
+    display: inline-block;
+    max-inline-size: 100%;
+    padding: var(--space-s) var(--space-m);
+    background-color: var(--background);
+}
+
+.title-box h1 {
+    font-size: var(--step-5);
+}
+
+.eyebrow {
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.tagline {
+    margin-top: var(--space-3xs);
+    font-size: var(--step-1);
+    color: var(--muted);
+}
+
+/* -------------------------- Page: main + sidebar ------------------------- */
+/* The sidebar sits beside the content while the content can stay at least
+   60% of the width, and drops below it otherwise; no media query needed. */
+.page {
+    flex: 1;
+    inline-size: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: var(--space-xl);
+    padding-block: var(--space-xl);
+}
+
+.page > main {
+    flex: 999 1 0;
+    min-inline-size: 60%;
+}
+
+.page > .sidebar {
+    flex: 1 1 22rem;
+}
+
+/* ------------------------------- Sections -------------------------------- */
+.section + .section {
+    margin-top: var(--space-2xl);
+}
+
+.section > h2 {
+    font-size: var(--step-4);
+    margin-bottom: var(--space-s);
+}
+
+.section-intro {
+    margin-bottom: var(--space-m);
+}
+
+.prose > * + *,
+.section-intro > * + * {
+    margin-top: var(--space-s);
+}
+
+.prose ul,
+.prose ol {
+    padding-left: var(--space-m);
+}
+
+.empty {
+    color: var(--muted);
+}
+
+.section-link {
+    margin-top: var(--space-m);
+}
+
+.btn {
+    display: inline-block;
+    padding: var(--space-2xs) var(--space-m);
+    background-color: var(--link);
+    color: var(--on-ink);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: var(--accent);
+    color: var(--on-ink);
+}
+
+/* Small uppercase label: event type, software kind. */
+.badge {
+    display: inline-block;
+    padding: 0 var(--space-2xs);
+    margin-bottom: var(--space-3xs);
+    font-size: var(--step--1);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background-color: var(--accent-tint);
+}
+
+/* A row of details separated by dots: speaker · date · time · room. */
+.meta {
+    color: var(--muted);
+}
+
+.meta span + span::before {
+    content: "·";
+    margin-inline: var(--space-2xs);
+}
+
+.speaker {
+    font-weight: 700;
+    color: var(--text);
+}
+
+.links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2xs) var(--space-m);
+    margin-top: var(--space-xs);
+}
+
+.link {
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* --------------------------- Research questions -------------------------- */
+.themes {
+    list-style: none;
+}
+
+.themes li {
+    position: relative;
+    padding-left: var(--space-m);
+}
+
+.themes li + li {
+    margin-top: var(--space-xs);
+}
+
+.themes li::before {
+    content: "";
+    position: absolute;
+    left: 0.2em;
+    top: 0.5em;
+    inline-size: 0.6em;
+    block-size: 0.6em;
+    border-radius: 50%;
+    background-color: var(--line);
+}
+
+/* -------------------------------- Events --------------------------------- */
+.event {
+    display: flex;
+    gap: var(--space-m);
+    padding-block: var(--space-m);
+    border-bottom: 1px solid var(--line);
+}
+
+.section > h2 + .event {
+    padding-top: 0;
+}
+
+.event:last-of-type {
+    border-bottom: none;
+}
+
+/* Calendar-style date block. Screen readers get the date from .meta. */
+.event-date {
+    flex: 0 0 4.5rem;
+    align-self: flex-start;
+    padding: var(--space-2xs) var(--space-3xs);
+    text-align: center;
+    background-color: var(--panel);
+    border-top: var(--rule) solid var(--accent);
+}
+
+.event-day {
+    display: block;
+    font-stretch: var(--heading-stretch);
+    font-weight: 700;
+    font-size: var(--step-3);
+    line-height: 1.1;
+}
+
+.event-month {
+    display: block;
+    font-size: var(--step--1);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.event-body {
+    flex: 1;
+    min-inline-size: 0;
+}
+
+.event-title {
+    font-size: var(--step-2);
+    margin-bottom: var(--space-3xs);
+}
+
+.event-description {
+    margin-top: var(--space-xs);
+}
+
+.btn-calendar {
+    font: inherit;
+    font-size: var(--step--1);
+    font-weight: 700;
+    padding: var(--space-3xs) var(--space-xs);
+    color: var(--link);
+    background-color: var(--background);
+    border: 1px solid var(--line);
+    cursor: pointer;
+}
+
+.btn-calendar:hover {
+    border-color: var(--link);
+}
+
+/* ------------------------------- Software -------------------------------- */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+    gap: var(--space-m);
+}
+
+/* --kind is set per card from the palette's kind-<name> colour; see
+   _includes/software_item.html. */
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-s) var(--space-m) var(--space-m);
+    border: 1px solid var(--line);
+    border-top: var(--rule) solid var(--kind);
+}
+
+.card .badge {
+    align-self: flex-start;
+    color: var(--on-ink);
+    background-color: var(--kind);
+}
+
+.software-name {
+    font-size: var(--step-2);
+    margin-bottom: var(--space-3xs);
+}
+
+.software-description {
+    margin-top: var(--space-xs);
+    color: var(--muted);
+}
+
+.card .meta {
+    margin-top: var(--space-xs);
+}
+
+.tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3xs);
+    margin-top: var(--space-xs);
+}
+
+.tags li {
+    padding: 0 var(--space-2xs);
+    font-size: var(--step--1);
+    color: var(--muted);
+    border: 1px solid var(--line);
+}
+
+/* Tags and links sit together at the bottom of the card, so both rows line
+   up across a row of (equal-height) cards. */
+.card-footer {
+    margin-top: auto;
+    padding-top: var(--space-s);
+}
+
+.card-footer .tags {
+    margin-top: 0;
+}
+
+.card .link {
+    color: var(--kind);
+}
+
+/* The first link (Open app, Download or Code) is drawn as a button. */
+.card .link:first-child {
+    padding: var(--space-3xs) var(--space-s);
+    color: var(--on-ink);
+    background-color: var(--kind);
+    text-decoration: none;
+}
+
+/* -------------------------------- Sidebar -------------------------------- */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+}
+
+.panel {
+    padding: var(--space-m);
+    background-color: var(--panel);
+}
+
+.panel h2 {
+    font-size: var(--step-2);
+    margin-bottom: var(--space-s);
+}
+
+.panel ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+}
+
+.person {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+}
+
+.person-photo {
+    flex: none;
+    inline-size: 4.5rem;
+    block-size: 4.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.person-name {
+    display: block;
+    font-stretch: var(--heading-stretch);
+    font-weight: 700;
+    font-size: var(--step-1);
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+.person-title {
+    display: block;
+    color: var(--muted);
+    line-height: 1.4;
+}
+
+.contacts a,
+.related a {
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.contacts a:hover,
+.related a:hover {
+    text-decoration: underline;
+}
+
+.contacts a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.contact-icon {
+    flex: none;
+    display: grid;
+    place-items: center;
+    inline-size: 2rem;
+    block-size: 2rem;
+    border-radius: 50%;
+    color: var(--on-ink);
+    background-color: var(--accent);
+}
+
+/* -------------------------------- Footer --------------------------------- */
+.footer {
+    background-color: var(--ink);
+    color: var(--on-ink);
+    border-top: var(--rule) solid var(--accent);
+}
+
+.footer .wrap {
+    padding-block: var(--space-l);
+}
+
+.footer-name {
+    font-stretch: var(--heading-stretch);
+    font-weight: 700;
+    font-size: var(--step-2);
+}
+
+.footer-note {
+    margin-top: var(--space-s);
+    font-size: var(--step--1);
+    opacity: 0.8;
+}
+
+/* On the dark top bar and footer the red focus ring is too faint. */
+.topbar :focus-visible,
+.footer :focus-visible {
+    outline-color: var(--on-ink);
+}
