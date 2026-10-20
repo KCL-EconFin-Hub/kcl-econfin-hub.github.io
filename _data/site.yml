@@ -121,6 +121,12 @@ home:
     intro: ""
     link_text: "All software"
 
+  # Everyone in _data/people.yml, sorted by last name, at the bottom of the
+  # overview.
+  people:
+    heading: "People"
+    intro: ""
+
 
 # ------------------------------- Events page -------------------------------
 events_page:

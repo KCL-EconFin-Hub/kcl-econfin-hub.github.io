@@ -1,6 +1,11 @@
 # ---------------------------------------------------------------------------
-# The hub's co-champions, shown in the sidebar of every page in the order
-# listed. The box's heading is `sidebar.people_heading` in _data/site.yml.
+# People shown on the site:
+#
+#   leads     the co-champions, shown in the sidebar of every page
+#   members   everyone else
+#
+# The People section at the bottom of the overview lists leads and members
+# together, sorted by last name, so list each person only once.
 #
 # Fields:
 #   name        required
@@ -8,6 +13,8 @@
 #               circle; 320x320 pixels is plenty)
 #   job_title   optional
 #   website     optional; the name links here (e.g. a KCL profile page)
+#   sort_as     optional; what to sort by when the last word of the name
+#               isn't the surname, e.g. "Gonzalez Amador"
 # ---------------------------------------------------------------------------
 
 leads:
@@ -20,3 +27,13 @@ leads:
     photo: "edwin-lock.jpg"
     job_title: "Lecturer in Computer Science Education"
     website: "https://www.kcl.ac.uk/people/edwin-lock"
+
+members: []
+
+# To add a member, replace the [] above with entries like this:
+#
+# members:
+#   - name: "Dr Jane Doe"
+#     photo: "jane-doe.jpg"
+#     job_title: "Lecturer in Computer Science"
+#     website: "https://www.kcl.ac.uk/people/jane-doe"

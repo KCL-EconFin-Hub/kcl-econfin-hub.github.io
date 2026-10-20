@@ -1,0 +1,22 @@
+{%- comment -%}
+One person as a list item: photo, name (linked to `website` if given) and
+job title. Expects: include.person. Used by the sidebar and the overview's
+People grid, which lay it out differently in CSS.
+{%- endcomment -%}
+{%- assign person = include.person -%}
+<li class="person">
+    {%- if person.photo %}
+    <img class="person-photo" src="{{ '/assets/img/people/' | append: person.photo | relative_url }}"
+         alt="" width="160" height="160" loading="lazy">
+    {%- else %}
+    <span class="person-photo" aria-hidden="true"></span>
+    {%- endif %}
+    <div>
+        {%- if person.website %}
+        <a class="person-name" href="{{ person.website }}">{{ person.name | escape }}</a>
+        {%- else %}
+        <span class="person-name">{{ person.name | escape }}</span>
+        {%- endif %}
+        {% if person.job_title %}<span class="person-title">{{ person.job_title | escape }}</span>{% endif %}
+    </div>
+</li>

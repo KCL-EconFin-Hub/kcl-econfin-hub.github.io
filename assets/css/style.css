@@ -526,9 +526,18 @@ img {
 }
 
 .person {
+    position: relative;
     display: flex;
     align-items: center;
     gap: var(--space-s);
+}
+
+/* The name's link is stretched over the whole entry, so the photo and title
+   are clickable too, while screen readers still hear a single link. */
+a.person-name::after {
+    content: "";
+    position: absolute;
+    inset: 0;
 }
 
 .person-photo {
@@ -537,6 +546,26 @@ img {
     block-size: 4.5rem;
     border-radius: 50%;
     object-fit: cover;
+    /* Shown when there is no photo. */
+    background-color: var(--line);
+}
+
+/* People grid at the bottom of the overview: large photos, centred text. */
+.people-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 12rem), 1fr));
+    gap: var(--space-l) var(--space-m);
+}
+
+.people-grid .person {
+    flex-direction: column;
+    text-align: center;
+}
+
+.people-grid .person-photo {
+    inline-size: 8rem;
+    block-size: 8rem;
 }
 
 .person-name {

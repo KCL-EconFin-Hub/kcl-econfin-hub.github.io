@@ -46,3 +46,31 @@ layout: default
 </section>
 {% endif %}
 
+{%- comment -%}
+Everyone in _data/people.yml (co-champions and members), sorted by last name:
+the last word of `name`, or `sort_as` if given. As with events, each person
+gets a text key "surname name|position"; the keys are sorted and each person
+is looked up again by position.
+{%- endcomment -%}
+{% assign leads = site.data.people.leads | default: empty_list %}
+{% assign members = site.data.people.members | default: empty_list %}
+{% assign everyone = leads | concat: members %}
+{% assign keys = empty_list %}
+{% for person in everyone %}
+    {% assign last_name = person.name | split: ' ' | last %}
+    {% assign key = person.sort_as | default: last_name | append: ' ' | append: person.name | append: '|' | append: forloop.index0 | downcase %}
+    {% assign keys = keys | push: key %}
+{% endfor %}
+{% assign keys = keys | sort %}
+{% if keys.size > 0 %}
+<section id="people" class="section">
+    {% include section_head.html config=home.people %}
+    <ul class="people-grid">
+        {%- for key in keys %}
+        {% assign i = key | split: '|' | last | plus: 0 %}
+        {% assign person = everyone[i] %}
+        {% include person.html person=person %}
+        {%- endfor %}
+    </ul>
+</section>
+{% endif %}

@@ -1,7 +1,7 @@
 # Economics and Finance Hub website
 
 The website of the Economics and Finance Hub, served at
-<https://kcl-finance-hub.github.io>.
+<https://kcl-econfin-hub.github.io>.
 
 You can update everything on the site (text, events, software, people and
 colours) by editing four plain-text files in the [`_data/`](_data/) folder. You
@@ -86,9 +86,32 @@ Software appears in the order you list it.
 
 ## Changing people
 
-The co-champions appear in the sidebar of every page and are listed in
-`_data/people.yml` with a `name`, `job_title`, `website` (the name links
-there) and `photo`. To add a photo:
+`_data/people.yml` has two lists:
+
+- `leads` holds the co-champions, who appear in the sidebar of every page.
+- `members` holds everyone else.
+
+The **People** section at the bottom of the overview shows both lists
+together, sorted by last name, so list each person only once. Each person
+has:
+
+- `name`
+- `job_title`
+- `website` (the name links there)
+- `photo`
+
+To add a member, replace `members: []` with entries:
+
+```yaml
+members:
+  - name: "Dr Jane Doe"
+    photo: "jane-doe.jpg"
+    job_title: "Lecturer in Computer Science"
+    website: "https://www.kcl.ac.uk/people/jane-doe"
+```
+
+Sorting uses the last word of the name. If that isn't the surname, add e.g.
+`sort_as: "Gonzalez Amador"`. To add a photo:
 
 1. Upload a **square** image (around 320×320 pixels) to
    [`assets/img/people/`](assets/img/people/). On GitHub, use **Add file →
@@ -127,7 +150,7 @@ in the red square), the `page_title` of each page and the description text.
 The live site can count visitors with [Umami](https://umami.is), a
 privacy-friendly service that uses no cookies. To turn it on:
 
-1. Add the site in Umami. Its address is `kcl-finance-hub.github.io`.
+1. Add the site in Umami. Its address is `kcl-econfin-hub.github.io`.
 2. Copy the website ID from the site's **Edit** page, under "Tracking code".
    It looks like `a1b2c3d4-…`.
 3. Paste it into `_data/site.yml`:

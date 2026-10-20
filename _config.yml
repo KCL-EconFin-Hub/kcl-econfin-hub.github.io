@@ -6,7 +6,7 @@ title: Economics and Finance Hub
 # (https://NAME.github.io/) leave `baseurl` empty. For a project site
 # (https://NAME.github.io/REPO/) set `baseurl: "/REPO"`, or CSS, JavaScript and
 # internal links will 404.
-url: "https://kcl-finance-hub.github.io"
+url: "https://kcl-econfin-hub.github.io"
 baseurl: ""
 
 # Build settings

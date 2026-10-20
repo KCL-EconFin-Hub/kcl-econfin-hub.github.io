@@ -47,6 +47,7 @@ _data/software.yml     software entries
 _layouts/default.html  the page shell: top bar, banner, content + sidebar, footer
 _includes/
   sidebar.html         co-champions, contact and related-links boxes
+  person.html          one person: photo, linked name, job title
   section_head.html    an h2 (or h3) plus optional intro paragraph
   event_lists.html     splits events into `upcoming` and `past`
   event.html           one event
@@ -294,10 +295,25 @@ slips rather than breaking the build or the layout:
 
 ## People
 
-`people.yml` has a single `leads` list, rendered in the sidebar by
-`sidebar.html`. Photos live in `assets/img/people/` as square images
-(320×320 is enough), and CSS crops them to a circle. A person without a
-`photo` still renders cleanly.
+`people.yml` has two lists:
+
+- **`leads`** (the co-champions), rendered in the sidebar by `sidebar.html`.
+- **`members`**, which together with `leads` makes up the **People** grid at
+  the bottom of the overview.
+
+Both places use the same `person.html` include. The CSS lays it out as a
+small photo beside the text (`.panel .person`) or as a large centred card
+(`.people-grid .person`).
+
+The grid is sorted by surname with the same text-key technique as events.
+Each person gets the key `surname name|position`, where the surname is the
+last word of `name` unless `sort_as` is given. The keys are sorted, and each
+person is looked up again by position. The co-champions are in the grid
+automatically, so each person is listed once in the data.
+
+Photos live in `assets/img/people/` as square images (320×320 is enough),
+and CSS crops them to a circle. A person without a `photo` gets a grey
+circle in its place, so the grid stays aligned.
 
 ## Liquid gotchas
 
