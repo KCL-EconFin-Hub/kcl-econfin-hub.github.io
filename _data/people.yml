@@ -28,12 +28,93 @@ leads:
     job_title: "Lecturer in Computer Science Education"
     website: "https://www.kcl.ac.uk/people/edwin-lock"
 
-members: []
+members:
+  - name: "Dr Hannah Cao"
+    photo: "hannah-cao.jpg"
+    job_title: "Senior Lecturer in Computer Science Education"
+    website: "https://www.kcl.ac.uk/people/hannah-cao"
 
-# To add a member, replace the [] above with entries like this:
-#
-# members:
-#   - name: "Dr Jane Doe"
-#     photo: "jane-doe.jpg"
-#     job_title: "Lecturer in Computer Science"
-#     website: "https://www.kcl.ac.uk/people/jane-doe"
+  - name: "Dr Hubie Chen"
+    photo: "hubie-chen.jpg"
+    job_title: "Senior Lecturer"
+    website: "https://www.kcl.ac.uk/people/hubie-chen"
+
+  - name: "Professor Hana Chockler"
+    photo: "hana-chockler.jpg"
+    job_title: "Professor of Computer Science"
+    website: "https://www.kcl.ac.uk/people/hana-chockler"
+
+  - name: "Dr Yali Du"
+    photo: "yali-du.jpg"
+    job_title: "Head of the Distributed AI Research Group"
+    website: "https://www.kcl.ac.uk/people/yali-du"
+
+  - name: "Dr Karine Even-Mendoza"
+    photo: "karine-even-mendoza.jpg"
+    job_title: "Lecturer in Systems & Programming Languages"
+    website: "https://www.kcl.ac.uk/people/karine-even-mendoza"
+
+  - name: "Professor Maribel Fernandez"
+    photo: "maribel-fernandez.jpg"
+    job_title: "Vice-Dean (People & Planning)"
+    website: "https://www.kcl.ac.uk/people/maribel-fernandez"
+
+  - name: "Professor Yulan He"
+    photo: "yulan-he.jpg"
+    job_title: "Professor in Natural Language Processing"
+    website: "https://www.kcl.ac.uk/people/yulan-he"
+
+  - name: "Dr Kevin Lano"
+    photo: "kevin-lano.jpg"
+    job_title: "Reader in Software Engineering"
+    website: "https://www.kcl.ac.uk/people/kevin-lano"
+
+  - name: "Dr Stefanos Leonardos"
+    photo: "stefanos-leonardos.jpg"
+    job_title: "Lecturer in Machine Learning"
+    website: "https://www.kcl.ac.uk/people/stefanos-leonardos"
+
+  - name: "Dr Grigorios Loukides"
+    photo: "grigorios-loukides.png"
+    job_title: "Deputy Head of the Algorithms and Data Analysis Research Group"
+    website: "https://www.kcl.ac.uk/people/grigorios-loukides"
+
+  - name: "Professor Peter McBurney"
+    photo: "peter-mcburney.jpg"
+    job_title: "Professor of Computer Science"
+    website: "https://www.kcl.ac.uk/people/peter-mcburney"
+
+  - name: "Dr Maria Polukarov"
+    photo: "maria-polukarov.jpg"
+    job_title: "Reader in Computer Science"
+    website: "https://www.kcl.ac.uk/people/maria-polukarov"
+
+  - name: "Professor Tomasz Radzik"
+    photo: "tomasz-radzik.jpg"
+    job_title: "Professor in Computer Science"
+    website: "https://www.kcl.ac.uk/people/tomasz-radzik"
+
+  - name: "Dr Kathleen Steinhöfel"
+    photo: "kathleen-steinhofel.png"
+    job_title: "Reader in Computer Science"
+    website: "https://www.kcl.ac.uk/people/kathleen-steinhofel"
+
+  - name: "Professor Carmine Ventre"
+    photo: "carmine-ventre.png"
+    job_title: "Professor of Computer Science"
+    website: "https://www.kcl.ac.uk/people/carmine-ventre"
+
+  - name: "Professor Luca Viganò"
+    photo: "luca-vigano.jpg"
+    job_title: "Professor of Computer Science"
+    website: "https://www.kcl.ac.uk/people/luca-vigano"
+
+  - name: "Dr Jie Zhang"
+    photo: "jie-zhang.jpg"
+    job_title: "Lecturer in Computer Science (Software Engineering)"
+    website: "https://www.kcl.ac.uk/people/jie-zhang"
+
+  - name: "Dr Jiahua Zhu"
+    photo: "jiahua-zhu.jpg"
+    job_title: "Lecturer in Finance"
+    website: "https://www.kcl.ac.uk/people/jiahua-zhu"

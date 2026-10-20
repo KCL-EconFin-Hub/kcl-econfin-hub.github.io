@@ -54,6 +54,9 @@ _includes/
   software_item.html   one software card
 favicon.ico            browser-tab icon (16, 32, 48 px)
 apple-touch-icon.png   home-screen icon (180 px)
+tools/
+  fetch_kcl_people.py  scrapes the hub's people list from the KCL page into a
+                       CSV plus photos (not part of the site; see its docstring)
 index.html             overview  (/)
 events.html            events    (/events/)
 software.html          software  (/software/)

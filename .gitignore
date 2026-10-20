@@ -13,6 +13,11 @@ Gemfile.lock
 # Node, if tooling is ever used locally (e.g. npx html-validate)
 node_modules/
 
+# Python tooling in tools/: virtual environment and the people script's output
+.venv/
+tools/photos/
+tools/people.csv
+
 # LLM / AI assistant files and folders
 .claude/
 CLAUDE.md
