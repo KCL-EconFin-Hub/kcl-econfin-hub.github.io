@@ -104,7 +104,8 @@ home:
       - "Algorithms and complexity of markets and economic equilibria"
       - "Blockchain and decentralised finance"
       - "Detecting systemic risk and clearing of financial networks"
-
+      - "Modeling economic and financial domains with agent-based models and Agentic AI"
+      
   events:
     heading: "Upcoming events"
     intro: ""
