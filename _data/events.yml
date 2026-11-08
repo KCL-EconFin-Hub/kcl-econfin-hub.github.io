@@ -43,3 +43,17 @@
 #   description: "Two days of talks on ..."
 #   url: "https://example.com/workshop"
 #   registration_url: "https://example.com/register"
+
+
+- title: "Rethinking Investing in the Era of AI: From Financial Evidence to Reliable Decisions"
+  type: "Seminar"
+  speaker: "Dr Yongjae Lee"
+  date: "2026-11-12"
+  time: "17:00-18:00"
+  location: "Bush House (S) 5.01"
+  description: |
+    "AI is changing investing from a collection of isolated prediction tasks into connected workflows that interpret evidence, form investment views, and support decisions. This talk examines that transition through three questions: what capabilities are useful, how should they be integrated, and how should the resulting systems be evaluated and operated?
+    Drawing on recent research, I discuss how language models extract signals from financial disclosures and alternative data, how text can supply context for time-series analysis, and why forecasting benchmarks should reflect the economic decisions they support. I then examine two sources of decision risk: model-specific investment biases and losses of information fidelity when evidence is summarized or passed between agents. These findings motivate evaluation beyond generic accuracy, including realistic financial retrieval tasks, explicit tests of bias, and context-adaptive rubrics for research agents. The central argument is that progress in financial AI should be judged by how faithfully systems use evidence and how reliably they support investment decisions, with human objectives, constraints, and oversight built into the workflow.
+
+    Bio:
+    Yongjae Lee is an Associate Professor at Ulsan National Institute of Science and Technology (UNIST) and the Chief Scientist of LinqAlpha AI Lab. He leads research on how AI systems understand financial information, reason about markets, and make reliable investment decisions. He serves on the advisory editorial board for the Journal of Financial Data Science and was a Workshop Co-Chair for ICAIF '24. Dr. Lee has been playing a leading role in organizing numerous workshops on financial AI at premier ML/AI conferences, including NeurIPS, ICLR, EMNLP, KDD, AAAI, CIKM, IJCAI, SIGIR, and ICAIF. Dr. Lee actively bridges academia and policy, serving on Korea's Presidential Council of National AI Strategy and the Financial Services Commission’s AI in Finance Committee and Innovation Financial Services Review Committee. He received his B.S. in Computer Science and Mathematical Sciences and his Ph.D. in Industrial and Systems Engineering from KAIST."
